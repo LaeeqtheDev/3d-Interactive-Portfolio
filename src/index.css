@@ -1,5 +1,28 @@
-/* Fonts are loaded from index.html with preconnect — importing them here
-   would block first paint behind a second round trip. */
+/* Fonts are self-hosted (Latin subset, woff2) so first paint never waits on
+   a third-party origin. `swap` shows fallback text immediately. */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("./assets/fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "B612 Mono";
+  src: url("./assets/fonts/b612-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -13,6 +36,15 @@
   --haze: #64748b;
   --rule: #e2e8f0;
   --signal: #ff9f1c;
+
+  /* Sampled from the island itself: the tower roofs and the ground. */
+  --roof: #b9553a;
+  --sand: #f3f1e1;
+  --sand-edge: #dcdcb9;
+  --muted: #475569;
+
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-mono: "B612 Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 html {
@@ -47,15 +79,15 @@ body {
 
 @layer utilities {
   .max-container {
-    @apply max-w-5xl mx-auto sm:p-16 pb-12 !pt-[126px] px-6 min-h-[calc(100vh-80px)];
+    @apply relative z-[1] max-w-5xl mx-auto sm:p-16 pb-12 !pt-[126px] px-6 min-h-[calc(100vh-80px)];
   }
 
   .head-text {
-    @apply sm:text-5xl text-3xl font-bold sm:leading-tight leading-tight font-display tracking-tight;
+    @apply sm:text-[3.4rem] text-[2.1rem] font-bold sm:leading-[1.04] leading-[1.08] font-display tracking-[-0.025em];
   }
 
   .subhead-text {
-    @apply font-display font-bold sm:text-3xl text-xl tracking-tight;
+    @apply font-display font-bold sm:text-[1.75rem] text-xl tracking-[-0.02em];
   }
 
   .blue-gradient_text {
@@ -65,7 +97,7 @@ body {
   /* The utility face: small, uppercase, wide tracking. Used for every piece
      of metadata on the site — years, counts, section labels, status. */
   .meta {
-    @apply font-display text-meta font-medium uppercase text-haze;
+    @apply font-mono text-meta uppercase text-haze;
   }
 
   .rule-heading {
@@ -88,20 +120,12 @@ body {
     @apply inline-flex items-center justify-center gap-2 font-display font-medium rounded-lg text-sm px-6 py-3 border border-rule text-ink bg-white transition-colors duration-200 hover:border-horizon hover:text-horizon;
   }
 
-  .header {
-    @apply flex justify-between items-center sm:px-16 px-6 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-20 right-0 left-0;
-  }
-
   .nav-link {
     @apply font-display text-[0.95rem] font-medium transition-colors duration-200;
   }
 
   .info-box {
-    @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-blue pt-4 pb-12 px-8;
-  }
-
-  .neo-btn {
-    @apply py-3 px-6 rounded-lg text-blue-500 text-center font-display font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
+    @apply mx-5 flex flex-col items-center gap-4 max-w-2xl sky-card py-5 px-7 text-ink;
   }
 
   .cta {
@@ -151,16 +175,6 @@ body {
   height: calc(100% - 3rem);
 }
 
-.log-index {
-  font-variant-numeric: tabular-nums;
-  transition: color 240ms ease;
-}
-
-.log-entry:hover .log-index,
-.log-entry:focus-within .log-index {
-  color: var(--horizon);
-}
-
 .status-dot {
   width: 6px;
   height: 6px;
@@ -169,8 +183,8 @@ body {
 }
 
 .status-live {
-  background: var(--signal);
-  box-shadow: 0 0 0 3px rgb(255 159 28 / 0.18);
+  background: var(--roof);
+  box-shadow: 0 0 0 3px rgb(185 85 58 / 0.16);
 }
 
 .status-private {
@@ -201,7 +215,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--ink);
@@ -271,103 +285,6 @@ body {
   background: var(--horizon);
   border-color: var(--horizon);
   box-shadow: 0 0 0 4px rgb(0 114 255 / 0.14);
-}
-
-/* ------------------------------------------------------------------ */
-/*  Kept from the original scene styling                               */
-/* ------------------------------------------------------------------ */
-
-.glassmorphism {
-  background: rgba(8, 116, 239, 0.07);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.block-container {
-  position: relative;
-  transition: 250ms;
-  perspective: 500px;
-}
-
-.block-container .btn-back {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: inherit;
-  height: inherit;
-  transition: 250ms;
-  transform-style: preserve-3d;
-  transform-origin: bottom right;
-  transform: rotateZ(15deg);
-  will-change: transform;
-  box-shadow: 16px 0 40px #e4e4e4;
-}
-
-.block-container .btn-back-red {
-  background: linear-gradient(135deg, #ff4b1f -20%, #ff9068 120%);
-}
-.block-container .btn-back-green {
-  background: linear-gradient(135deg, #adfda2 -20%, #11d3f3 120%);
-}
-.block-container .btn-back-yellow {
-  background: linear-gradient(135deg, #f7971e -20%, #ffd200 120%);
-}
-.block-container .btn-back-blue {
-  background: linear-gradient(135deg, #0061ff -20%, #60efff 120%);
-}
-.block-container .btn-back-orange {
-  background: linear-gradient(135deg, #ff0f7b -20%, #f89b29 120%);
-}
-.block-container .btn-back-pink {
-  background: linear-gradient(135deg, #e81cff -20%, #40c9ff 120%);
-}
-.block-container .btn-back-purple {
-  background: linear-gradient(135deg, #8e2de2 -20%, #4a00e0 120%);
-}
-.block-container .btn-back-black {
-  background: linear-gradient(135deg, #0a1647 -20%, #e4e7e4 120%);
-}
-
-.block-container .btn-front {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  width: inherit;
-  height: inherit;
-  background-color: #ffffff33;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  transition: 250ms;
-  transform-style: preserve-3d;
-  transform-origin: top left;
-  overflow: hidden;
-}
-
-.block-container:hover > .btn-back {
-  transform: translateZ(20px) rotateZ(15deg) rotateX(-20deg) rotateY(-20deg);
-}
-
-.block-container:hover > .btn-front {
-  transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
-}
-
-/* Neo Brutalism — the voice of the 3D scene, kept intact */
-.neo-brutalism-blue {
-  background: #2b77e7;
-  position: relative;
-  border-radius: 10px;
-  border: #2b77e7;
-  box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
-    0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
-}
-
-.neo-brutalism-white {
-  background: #fff;
-  border: #fff;
-  box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
-    0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }
 
 /* ==================================================================== */
@@ -471,7 +388,7 @@ body {
 }
 
 .stage-label {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-mono);
   font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -522,7 +439,7 @@ body {
   align-items: center;
   gap: 0.6rem;
   padding-inline: 1.5rem;
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--haze);
@@ -559,20 +476,48 @@ body {
   flex: none;
 }
 
-.stat-card {
-  border-top: 1px solid var(--rule);
-  padding-top: 1.1rem;
-  position: relative;
+/* Results: one ruled strip with equal cells, so every number sits on the
+   same baseline. Two columns on phones, four from 1024px. */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
 }
 
-.stat-card::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 2.25rem;
-  height: 2px;
-  background: var(--horizon);
+.stat-cell {
+  padding: 1.35rem 1.4rem 1.25rem;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+.stat-cell:nth-child(-n + 2) {
+  border-top: 0;
+}
+
+.stat-cell:nth-child(2n + 1) {
+  border-left: 0;
+}
+
+@media (min-width: 1024px) {
+  .stat-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .stat-cell,
+  .stat-cell:nth-child(-n + 2) {
+    border-top: 0;
+  }
+
+  .stat-cell:nth-child(2n + 1) {
+    border-left: 1px solid var(--rule);
+  }
+
+  .stat-cell:first-child {
+    border-left: 0;
+  }
 }
 
 .record-card {
@@ -592,8 +537,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.8125rem;
-  padding: 0.4rem 0.75rem;
+  font-size: 0.78rem;
+  padding: 0.32rem 0.7rem;
   border-radius: 999px;
   border: 1px solid var(--rule);
   background: #fff;
@@ -609,14 +554,14 @@ body {
 }
 
 .pill-now {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-mono);
   font-size: 0.625rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--signal);
-  border: 1px solid rgb(255 159 28 / 0.4);
-  background: rgb(255 159 28 / 0.08);
+  color: var(--roof);
+  border: 1px solid rgb(185 85 58 / 0.35);
+  background: rgb(185 85 58 / 0.07);
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
 }
@@ -624,9 +569,9 @@ body {
 .bullet {
   position: relative;
   padding-left: 1rem;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   line-height: 1.65;
-  color: var(--haze);
+  color: var(--muted);
 }
 
 .bullet::before {
@@ -636,7 +581,7 @@ body {
   top: 0.7em;
   width: 6px;
   height: 1px;
-  background: var(--rule);
+  background: #94a3b8;
 }
 
 .inline-link {
@@ -658,7 +603,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--font-display);
   font-size: 0.8125rem;
   font-weight: 500;
   padding: 0.5rem 0.9rem;
@@ -683,4 +628,180 @@ body {
   font-size: 0.6875rem;
   font-variant-numeric: tabular-nums;
   opacity: 0.6;
+}
+
+/* ==================================================================== */
+/*  ONE SKY                                                             */
+/*                                                                      */
+/*  The landing page is an island under a sky. The inner pages open     */
+/*  under the same sky and then settle onto paper, so navigating away   */
+/*  from the island does not feel like leaving the site.                */
+/* ==================================================================== */
+
+.sky-band {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 34rem;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(34rem 9rem at 84% 34%, rgb(255 255 255 / 0.85), transparent 72%),
+    radial-gradient(26rem 8rem at 8% 52%, rgb(255 255 255 / 0.7), transparent 72%),
+    radial-gradient(18rem 5rem at 46% 18%, rgb(255 255 255 / 0.55), transparent 72%),
+    linear-gradient(180deg, #a6d3f5 0%, #cbe5f8 42%, var(--paper) 100%);
+}
+
+/* Frosted card that floats over the scene without hiding it. */
+.sky-card {
+  background: rgb(255 255 255 / 0.84);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 18px;
+  box-shadow: 0 28px 60px -34px rgb(11 18 32 / 0.55);
+}
+
+/* ==================================================================== */
+/*  PROJECT LOG                                                         */
+/* ==================================================================== */
+
+/* The two CV projects, set on the island's sand. */
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem 1.5rem 1.4rem;
+  border: 1px solid var(--sand-edge);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fff 0%, var(--sand) 100%);
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.feature-card:hover,
+.feature-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px -30px rgb(114 85 62 / 0.55);
+}
+
+.feature-card .stack-chip {
+  background: rgb(255 255 255 / 0.75);
+  border-color: var(--sand-edge);
+}
+
+/* Everything else is a ruled log line: date and status in the margin,
+   the record beside it. */
+.log-row {
+  border-left: 0;
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 0 1.6rem 0;
+}
+
+.log-row::before {
+  display: none;
+}
+
+.log-row:hover,
+.log-row:focus-within {
+  transform: none;
+}
+
+.log-row .log-name {
+  transition: color 200ms ease;
+}
+
+.log-row:hover .log-name,
+.log-row:focus-within .log-name {
+  color: var(--horizon);
+}
+
+@media (min-width: 768px) {
+  .log-row {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    column-gap: 1.5rem;
+  }
+}
+
+/* ==================================================================== */
+/*  EXPERIENCE                                                          */
+/* ==================================================================== */
+
+@media (min-width: 768px) {
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 10.5rem minmax(0, 1fr);
+    column-gap: 1.25rem;
+  }
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--haze);
+  padding-top: 0.35rem;
+}
+
+/* The section heading already draws a rule; the first row does not repeat it. */
+.log-row:first-child {
+  border-top: 0;
+}
+
+/* Two rows of chips is the most either featured card needs: reserving that
+   height keeps the chip blocks level even when one card needs only one row. */
+.feature-stack {
+  min-height: 3.9rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ==================================================================== */
+/*  SMALL THINGS                                                        */
+/* ==================================================================== */
+
+::selection {
+  background: rgb(0 114 255 / 0.16);
+}
+
+/* Current page in the navbar. */
+.nav-link {
+  position: relative;
+}
+
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sky), var(--horizon));
+}
+
+/* The footer is the ground the pages land on. */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--sand-edge);
+  background: linear-gradient(180deg, #fbfaf3 0%, var(--sand) 100%);
+}
+
+/* Landing cards ease in when the stage changes. */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.card-in {
+  animation: card-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }

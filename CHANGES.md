@@ -36,24 +36,22 @@
 
 ## Matching the CV
 
-- **7+ years**, not "5+" — was wrong in three places.
-- **North Foundry** (Founder & Lead Engineer) and **Webflow X** added to the experience timeline; all bullets now match the CV verbatim.
-- **Skills** rebuilt to the CV's seven categories, all 47 items — previously 16, and missing Convex, Supabase, PostgreSQL, Clerk, Stripe, Playwright, Jest, Zustand, shadcn/ui, GraphQL, Python and C++.
-- **Education and certifications** sections added.
-- **Measured results** section pulls the four numbers from your professional summary (45% / 28% / 25–30% / 25%) and attributes each to the role it came from.
-- **Résumé download** in the navbar and footer — the PDF is at `public/Syed-Laeeq-Ahmed-CV.pdf`.
+- **5+ years** and the title **Full-Stack Engineer** everywhere: profile, page title, meta description, JSON-LD and the landing panels.
+- **Experience timeline** mirrors the CV line for line: North Foundry, WebflowX (contract), Nexora Systems, InvoiceStock, Routelane (Frontend Developer) and Upwork.
+- **Skills** cover every item on the CV, in seven groups.
+- **Results** shows only figures that appear on the CV: 100+ teams, 50+ SMB customers, a 28% smaller bundle and 12+ clients.
+- **Availability** reads "remote (contract or EOR) or relocation", matching the CV header.
+- **Résumé download** in the navbar and footer serves the current one-page CV at `public/Syed-Laeeq-Ahmed-CV.pdf`.
 
 ---
 
-## Projects — every link
+## Projects
 
 13 entries in three groups. Each card shows only the buttons it has a real URL for, so nothing links to a dead page.
 
-**Products:** WebflowX (live + code) · OS North Foundry (live, private repo) · InvoiceStock (live + code) · Converso · Resumind · Subme
-**Client & studio work:** North Foundry (live, private) · Locopro (code) · Healthcare (code) · Routelane (private)
-**Experiments:** Sentinel (code) · Axen (live + code) · This portfolio (live + code)
-
-All 13 entries are wired: **12 of 13 are live and clickable**, 22 links total. Only Healthcare has no deployment (repo only). Your Upwork profile is in the footer and contact rail.
+**Featured projects:** Sentinel (live + code) · StillWater (Android release + code)
+**Employer & client work:** WebflowX · InvoiceStock · PeakHawks · North Foundry · Locopro · Healthcare · Routelane
+**Products & experiments:** OS North Foundry · Converso · Axen · This portfolio
 
 ---
 
@@ -92,7 +90,7 @@ Your EmailJS environment variables are unchanged: `VITE_APP_EMAILJS_SERVICE_ID`,
 
 ## Every link is in
 
-22 links across 13 projects; **12 of 13 are live**. Converso, Resumind and Subme now have both their deployment and their `LaeeqtheDev` repo. Locopro, Sentinel, Routelane and Axen have their live URLs. Your Upwork profile is in the footer and on the contact page. Only Healthcare is repo-only.
+Every project card links to its deployment, its source, or both. Only Healthcare is repo-only. Your Upwork profile is in the footer and on the contact page.
 
 ## GSAP — and where it is *not*
 
@@ -148,3 +146,42 @@ Four segments — Intro / Background / Work / Contact — matching the island's 
 | Unused assets shipped | 32 MB | **0** |
 
 `npm install` before running — GSAP is a new dependency.
+
+---
+
+# Round three: one sky, a real log, nothing third-party
+
+## Design
+
+- **One sky.** About, Projects and Contact now open under a sky band that fades to paper, so leaving the island no longer feels like leaving the site.
+- **Landing cards.** The solid blue panels are frosted cards. They sit over the scene without hiding the tower, and each later stage has a proper button.
+- **Type.** Bricolage Grotesque for headings, Work Sans for body, and B612 Mono (drawn for Airbus cockpit displays) for every date, count and status label.
+- **Colour from the scene.** A terracotta sampled from the tower roofs marks "Live" and "Now"; a sand tone sampled from the ground backs the two featured projects.
+- **Projects.** The two CV projects are side-by-side cards. Everything else is a log line with year and status in the margin, which uses the full width and cuts the page from about 5,450px to 4,000px at desktop width.
+- **About.** Skills sit in two columns of groups. Experience puts dates in the margin, company first, role beneath.
+
+## Engineering
+
+- **Draco decoder self-hosted** at `public/draco/`, set in `src/lib/draco.js`. The scene no longer depends on a third-party CDN being reachable.
+- **Fonts self-hosted** as three Latin-subset woff2 files in `src/assets/fonts/`. The Google Fonts links are gone from `index.html`.
+- **No cross-origin requests** on any route, checked in a headless browser.
+- **Dead CSS removed**: the unused neo-brutalism, block-container and glassmorphism rules.
+- **README rewritten** to describe what the code does, with sizes measured from this build.
+
+## Round three, second pass
+
+- **Results** are one ruled strip with four equal cells. The per-card parallax that pushed the numbers out of line is gone.
+- **Featured cards** pin their chips and links to the bottom as one block, so both cards line up.
+- **"Resume"** is spelled without accents in the navbar, footer and call to action.
+- **North Foundry** links point to northfoundry.co.
+- **Navbar** underlines the current page; the **footer** sits on the island's sand; landing cards ease in when the stage changes.
+- **Deep links fixed.** `vercel.json` rewrites unknown paths to `index.html`. Before this, opening `/about` directly returned 404 on the live site.
+- **SEO.** A 55-character title and 147-character description, robots, canonical, full Open Graph and Twitter tags with a 1200x630 share image, JSON-LD (`WebSite`, `ProfilePage`, `Person`), per-route titles and descriptions through `usePageMeta`, plus `robots.txt` and `sitemap.xml`.
+
+## Still to delete by hand
+
+These files are not imported anywhere and do not ship, but they add about 32 MB to a clone:
+
+```bash
+git rm src/assets/images/hero.jpg src/assets/sakura.mp3 "src/models/Island,.jsx"
+```

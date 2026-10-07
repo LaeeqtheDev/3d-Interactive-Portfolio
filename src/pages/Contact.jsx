@@ -1,4 +1,5 @@
 import emailjs from "@emailjs/browser";
+import usePageMeta from "../hooks/usePageMeta";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useLayoutEffect, useRef, useState } from "react";
 
@@ -18,6 +19,13 @@ import {
 } from "../lib/motion";
 
 const Contact = () => {
+  usePageMeta({
+    title: "Contact Syed Laeeq Ahmed | Full-Stack Engineer",
+    description:
+      "Hiring for a full-stack role or need something built? Send a message or email laeeqthedev@gmail.com. Replies usually within a day.",
+    path: "/contact",
+  });
+
   const root = useRef(null);
   const headline = useRef(null);
   const formRef = useRef();
@@ -143,9 +151,9 @@ const Contact = () => {
           Tell me what you&apos;re building.
         </span>
       </h1>
-      <p className="mt-6 text-haze leading-relaxed max-w-2xl" data-lede>
+      <p className="mt-6 text-muted leading-relaxed max-w-2xl" data-lede>
         Hiring for a full-stack role, or need something built? Send a message
-        below, or reach me directly — either works, and I usually reply within a
+        below or reach me directly. Either works, and I usually reply within a
         day.
       </p>
 

@@ -13,6 +13,10 @@ export default {
         haze: "#64748B",
         rule: "#E2E8F0",
         signal: "#FF9F1C",
+        /* sampled from the island: tower roofs and the ground */
+        roof: "#B9553A",
+        sand: { DEFAULT: "#F3F1E1", edge: "#DCDCB9" },
+        muted: "#475569",
 
         /* kept for backwards compatibility with existing classes */
         gray: { 200: "#D5DAE1" },
@@ -20,14 +24,16 @@ export default {
         blue: { 500: "#2b77e7" },
       },
       fontFamily: {
-        display: ["Space Grotesk", "system-ui", "sans-serif"],
+        display: ["Bricolage Grotesque", "system-ui", "sans-serif"],
         worksans: ["Work Sans", "system-ui", "sans-serif"],
-        /* `poppins` now resolves to the display face so any legacy
-           class keeps working without loading a third font family */
-        poppins: ["Space Grotesk", "system-ui", "sans-serif"],
+        /* B612 was drawn for Airbus cockpit displays: it sets every date,
+           count and status label on the site */
+        mono: ["B612 Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+        /* legacy class, resolves to the display face */
+        poppins: ["Bricolage Grotesque", "system-ui", "sans-serif"],
       },
       fontSize: {
-        meta: ["0.6875rem", { lineHeight: "1rem", letterSpacing: "0.12em" }],
+        meta: ["0.6875rem", { lineHeight: "1rem", letterSpacing: "0.06em" }],
       },
       boxShadow: {
         card: "0px 1px 2px 0px rgba(0, 0, 0, 0.05)",

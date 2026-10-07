@@ -4,7 +4,7 @@ import { profile, quickLinks } from "../constants";
 import { ArrowUpRight, MailIcon } from "./icons";
 
 const Footer = () => (
-  <footer className="border-t border-rule bg-white">
+  <footer className="site-footer">
     <div className="max-w-5xl mx-auto sm:px-16 px-6 py-12">
       <div className="flex flex-col md:flex-row md:items-start gap-10 md:gap-16">
         <div className="md:max-w-xs">
@@ -48,7 +48,7 @@ const Footer = () => (
             </li>
             <li>
               <a href={profile.resume} download className="link-out">
-                Download résumé
+                Download resume
                 <ArrowUpRight />
               </a>
             </li>
@@ -56,7 +56,7 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="mt-12 pt-6 border-t border-rule flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div className="mt-12 pt-6 border-t border-sand-edge flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <p className="meta">
           © {new Date().getFullYear()} {profile.name}
         </p>

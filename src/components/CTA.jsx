@@ -17,7 +17,7 @@ const CTA = () => (
         Start a conversation
       </Link>
       <a href={profile.resume} download className="btn-ghost">
-        Download résumé
+        Download resume
       </a>
     </div>
   </section>

@@ -4,57 +4,95 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Syed Laeeq Ahmed — Full-Stack JavaScript Developer</title>
+    <title>Syed Laeeq Ahmed | Full-Stack Engineer (React, Next.js)</title>
     <meta
       name="description"
-      content="Full-Stack JavaScript Developer with 7+ years building SaaS products and web applications in React, Next.js, Node.js and TypeScript. Based in Lahore, open to EU relocation and remote."
+      content="Full-stack engineer with 5+ years building multi-tenant SaaS in React, Next.js, TypeScript and Node.js. Open to remote or relocation. See the work."
     />
     <meta name="author" content="Syed Laeeq Ahmed" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#0B1220" />
     <link rel="canonical" href="https://laeeqthedevportfolio.vercel.app/" />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="google-site-verification" content="Q4kAWv8xwtpl4EHU5RTNh97JEL8mJ3z5hYhcX0Roc5I" />
 
-    <!-- Open Graph / social previews -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Syed Laeeq Ahmed — Full-Stack JavaScript Developer" />
+    <!-- Open Graph: LinkedIn, Slack, WhatsApp and other link previews -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Syed Laeeq Ahmed" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Syed Laeeq Ahmed | Full-Stack Engineer (React, Next.js)" />
     <meta
       property="og:description"
-      content="7+ years building SaaS products in React, Next.js, Node.js and TypeScript. Multi-tenant architecture, RBAC, CI/CD and AI features shipped to production."
+      content="Full-stack engineer with 5+ years building multi-tenant SaaS in React, Next.js, TypeScript and Node.js. Open to remote or relocation. See the work."
     />
     <meta property="og:url" content="https://laeeqthedevportfolio.vercel.app/" />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <!--
-      Fonts moved out of index.css. An @import inside CSS blocks rendering
-      until the stylesheet is parsed AND the font CSS is fetched — two
-      serialised round trips. Doing it here with preconnect starts the
-      handshake immediately.
-    -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;500&display=swap"
+    <meta property="og:image" content="https://laeeqthedevportfolio.vercel.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Syed Laeeq Ahmed's portfolio: a low-poly island with a biplane under a blue sky"
     />
+    <meta property="profile:first_name" content="Syed Laeeq" />
+    <meta property="profile:last_name" content="Ahmed" />
 
-    <!-- Draco decoder for the compressed .glb models -->
-    <link rel="dns-prefetch" href="https://www.gstatic.com" />
+    <!-- X / Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@laeeqthedev" />
+    <meta name="twitter:title" content="Syed Laeeq Ahmed | Full-Stack Engineer (React, Next.js)" />
+    <meta
+      name="twitter:description"
+      content="Full-stack engineer with 5+ years building multi-tenant SaaS in React, Next.js, TypeScript and Node.js. Open to remote or relocation. See the work."
+    />
+    <meta name="twitter:image" content="https://laeeqthedevportfolio.vercel.app/og-image.jpg" />
+
+    <!-- Fonts and the Draco decoder are served from this origin: no
+         third-party request sits in front of first paint. -->
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Syed Laeeq Ahmed",
-        "jobTitle": "Full-Stack JavaScript Developer",
-        "email": "laeeqthedev@gmail.com",
-        "url": "https://laeeqthedevportfolio.vercel.app/",
-        "address": { "@type": "PostalAddress", "addressLocality": "Lahore", "addressCountry": "PK" },
-        "sameAs": [
-          "https://github.com/LaeeqtheDev",
-          "https://www.linkedin.com/in/syed-laeeq-ahmed/",
-          "https://github.com/northfoundrystudio"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://laeeqthedevportfolio.vercel.app/#website",
+            "url": "https://laeeqthedevportfolio.vercel.app/",
+            "name": "Syed Laeeq Ahmed",
+            "inLanguage": "en",
+            "author": { "@id": "https://laeeqthedevportfolio.vercel.app/#person" }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://laeeqthedevportfolio.vercel.app/#profile",
+            "url": "https://laeeqthedevportfolio.vercel.app/",
+            "name": "Syed Laeeq Ahmed | Full-Stack Engineer (React, Next.js)",
+            "isPartOf": { "@id": "https://laeeqthedevportfolio.vercel.app/#website" },
+            "mainEntity": { "@id": "https://laeeqthedevportfolio.vercel.app/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://laeeqthedevportfolio.vercel.app/#person",
+            "name": "Syed Laeeq Ahmed",
+            "jobTitle": "Full-Stack Engineer",
+            "description": "Full-stack engineer with 5+ years of experience shipping production web applications in React, Next.js, TypeScript and Node.js.",
+            "email": "mailto:laeeqthedev@gmail.com",
+            "url": "https://laeeqthedevportfolio.vercel.app/",
+            "address": { "@type": "PostalAddress", "addressLocality": "Lahore", "addressCountry": "PK" },
+            "alumniOf": { "@type": "CollegeOrUniversity", "name": "The University of Lahore" },
+            "worksFor": { "@type": "Organization", "name": "North Foundry", "url": "https://northfoundry.co" },
+            "knowsAbout": [
+              "React", "Next.js", "TypeScript", "Node.js", "React Native", "GraphQL", "REST APIs",
+              "PostgreSQL", "Multi-tenant SaaS", "Role-based access control", "WebRTC", "WebAuthn",
+              "CI/CD", "LLM integration"
+            ],
+            "sameAs": [
+              "https://github.com/LaeeqtheDev",
+              "https://www.linkedin.com/in/syed-laeeq-ahmed/",
+              "https://twitter.com/laeeqthedev",
+              "https://github.com/northfoundrystudio"
+            ]
+          }
         ]
       }
     </script>
@@ -62,7 +100,7 @@
   <body>
     <div id="root"></div>
     <noscript>
-      Syed Laeeq Ahmed — Full-Stack JavaScript Developer. This portfolio needs
+      Syed Laeeq Ahmed, Full-Stack Engineer. This portfolio needs
       JavaScript. Reach me at laeeqthedev@gmail.com.
     </noscript>
     <script type="module" src="/src/main.jsx"></script>

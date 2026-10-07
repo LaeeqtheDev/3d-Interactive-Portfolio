@@ -49,7 +49,9 @@ const Navbar = () => {
               to={to}
               className={({ isActive }) =>
                 `nav-link ${
-                  isActive ? "text-horizon" : "text-ink hover:text-horizon"
+                  isActive
+                    ? "nav-link-active text-horizon"
+                    : "text-ink hover:text-horizon"
                 }`
               }
             >
@@ -62,7 +64,7 @@ const Navbar = () => {
             className="inline-flex items-center gap-2 font-display text-[0.8rem] font-medium px-4 py-2 rounded-full border border-rule bg-white text-ink transition-colors hover:border-horizon hover:text-horizon"
           >
             <DownloadIcon />
-            Résumé
+            Resume
           </a>
         </nav>
 
@@ -106,7 +108,7 @@ const Navbar = () => {
             className="nav-link py-3 text-ink inline-flex items-center gap-2"
           >
             <DownloadIcon />
-            Download résumé
+            Download resume
           </a>
         </div>
       </nav>

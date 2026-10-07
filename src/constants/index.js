@@ -4,32 +4,33 @@
 
 export const profile = {
   name: "Syed Laeeq Ahmed",
-  role: "Full-Stack JavaScript Developer",
+  role: "Full-Stack Engineer",
   location: "Lahore, Pakistan",
-  availability: "Open to EU relocation and remote",
+  availability: "Open to full-time roles: remote (contract or EOR) or relocation",
   email: "laeeqthedev@gmail.com",
   phone: "+92 332 4265921",
   resume: "/Syed-Laeeq-Ahmed-CV.pdf",
   github: "https://github.com/LaeeqtheDev",
   linkedin: "https://www.linkedin.com/in/syed-laeeq-ahmed/",
   upwork: "https://www.upwork.com/freelancers/~0121dd549b3f2830da",
-  yearsExperience: "7+",
+  yearsExperience: "5+",
 };
 
 /* ------------------------------------------------------------------ */
-/*  SKILLS — grouped exactly as they appear on the CV                  */
+/*  SKILLS - every item on the CV, plus a few it has no room for       */
 /* ------------------------------------------------------------------ */
 
 export const skillGroups = [
   {
     label: "Languages",
-    items: ["JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3", "C++", "Python"],
+    items: ["TypeScript", "JavaScript (ES6+)", "Python", "HTML5", "CSS3", "C++"],
   },
   {
     label: "Frontend",
     items: [
       "React.js",
       "Next.js (App Router)",
+      "React Native (Expo)",
       "Redux",
       "Zustand",
       "Tailwind CSS",
@@ -45,39 +46,68 @@ export const skillGroups = [
       "Express.js",
       "REST APIs",
       "GraphQL",
-      "WebRTC",
+      "Django REST Framework",
       "Microservices",
-      "SSR",
+      "WebRTC",
       "Server-Side Caching",
     ],
   },
   {
-    label: "Databases",
-    items: ["MongoDB", "PostgreSQL", "Supabase", "Firebase", "Convex"],
+    label: "Databases & Cloud",
+    items: [
+      "PostgreSQL",
+      "MongoDB",
+      "Supabase",
+      "Convex",
+      "Firebase",
+      "AWS (EC2, S3, CloudFront, RDS)",
+      "Oracle Cloud",
+      "Vercel",
+    ],
   },
   {
     label: "Auth & Security",
-    items: ["JWT", "OAuth", "Clerk", "RBAC", "Multi-Tenant Architecture", "Secure Sessions"],
+    items: [
+      "JWT",
+      "OAuth",
+      "WebAuthn / Passkeys",
+      "Clerk",
+      "RBAC",
+      "Multi-Tenant Architecture",
+      "Data Isolation",
+    ],
   },
   {
     label: "AI & Integrations",
     items: [
       "OpenAI API",
       "Google Gemini",
-      "Vapi AI (TTS/STT)",
+      "Groq",
+      "Vapi AI",
       "Google Speech API",
       "Stripe",
+      "Sanity CMS",
       "Google Maps API",
     ],
   },
   {
     label: "Testing & DevOps",
-    items: ["Jest", "Playwright", "Unit Testing", "E2E Testing", "Git", "GitHub Actions", "CI/CD"],
+    items: [
+      "Jest",
+      "Playwright",
+      "Git",
+      "GitHub Actions",
+      "CI/CD",
+      "Docker",
+      "Agile / Scrum",
+      "System Design",
+      "Code Review",
+    ],
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/*  EXPERIENCE — mirrors the CV, newest first                          */
+/*  EXPERIENCE - mirrors the CV line for line, newest first            */
 /* ------------------------------------------------------------------ */
 
 export const experiences = [
@@ -85,66 +115,67 @@ export const experiences = [
     title: "Founder & Lead Engineer",
     company: "North Foundry",
     location: "Remote",
-    date: "Jul 2026 — Present",
+    date: "Jul 2026 - Present",
     current: true,
     points: [
-      "Lead end-to-end technical delivery of client web and SaaS platforms using Next.js, React, TypeScript and Node.js, owning system design, architecture standards and deployment workflows.",
-      "Design scalable application architectures and AI-powered automation workflows, including CRM and business-process integrations.",
-      "Integrate third-party APIs, authentication, cloud services and payment gateways; run code reviews and enforce engineering standards across projects.",
+      "Delivered web and SaaS projects for 12+ clients, leading architecture, data modeling and code review across a distributed team.",
+      "Shipped the PeakHawks marketing platform on Next.js 15, Sanity CMS and GoHighLevel with case-study and blog systems, a booking flow and rate-limited API routes, so the client team publishes without touching code. Other clients include ZC Pizzeria.",
+      "Deploy client applications on AWS and Vercel with GitHub Actions CI/CD; build AI chat and intake assistants with CRM integrations.",
     ],
   },
   {
-    title: "Full-Stack Engineer",
-    company: "Webflow X",
+    title: "Full-Stack Engineer (Contract)",
+    company: "WebflowX",
     location: "Remote",
-    date: "Oct 2025 — Jun 2026",
+    date: "Oct 2025 - Jun 2026",
     points: [
-      "Architected a multi-tenant AI SaaS productivity platform from scratch using Next.js, TypeScript and Convex, owning system design through production deployment.",
-      "Built real-time team chat and video calling with Convex live queries and WebRTC, enabling low-latency collaboration for distributed teams.",
-      "Integrated OpenAI, Google Gemini and Google Speech API for AI meeting summaries, documentation assistance and speech processing.",
-      "Designed and enforced organization-level RBAC and multi-tenant data isolation.",
+      "Built the multi-tenant SaaS from an existing design on Next.js, TypeScript and Convex, owning the data model, auth and deployment.",
+      "Implemented real-time team chat and video calling with Convex live queries and WebRTC.",
+      "Integrated OpenAI, Gemini and Google Speech APIs to generate AI meeting summaries as validated structured JSON.",
+      "Designed organization-level RBAC, multi-tenant data isolation and plan-based usage limits across four subscription tiers.",
+      "Product onboarded 100+ teams, replacing separate chat, task and meeting tools with one workspace.",
     ],
   },
   {
     title: "Full-Stack Engineer",
     company: "Nexora Systems",
-    location: "Remote — Greater London, UK",
-    date: "Jul 2024 — Oct 2025",
+    location: "Remote (Greater London, UK)",
+    date: "Jul 2024 - Oct 2025",
     points: [
-      "Cut CI build times by 45% by re-architecting Next.js and Node.js microservices and streamlining deployment pipelines.",
-      "Reduced API latency by 25–30% through a GraphQL implementation with server-side caching strategies.",
-      "Shipped a shared UI component library (shadcn/ui + Tailwind CSS) across 8+ platform modules, cutting feature development time by ~20%.",
-      "Established automated end-to-end test coverage with Playwright and Jest across critical user flows, reducing post-release defects by 25%.",
+      "Shortened CI build times by re-architecting Next.js and Node.js build pipelines and parallelizing test stages in GitHub Actions.",
+      "Reduced API latency by replacing over-fetching REST endpoints with GraphQL and a server-side caching layer.",
+      "Created a shared shadcn/ui and Tailwind CSS component library adopted across 8+ platform modules.",
+      "Established Playwright and Jest end-to-end test coverage on critical user flows, reducing post-release defects.",
     ],
   },
   {
     title: "Full-Stack Engineer",
     company: "InvoiceStock",
-    location: "Remote — Wolverhampton, UK",
-    date: "Jul 2022 — Jun 2024",
+    location: "Remote (Wolverhampton, UK)",
+    date: "Jul 2022 - Jun 2024",
     points: [
-      "Reduced frontend bundle size by 28% by migrating the codebase to Next.js, TypeScript and Zustand.",
-      "Architected multi-tenant data isolation and RBAC supporting secure, scalable SaaS operations for 50+ SMB customers.",
-      "Built invoicing workflows with barcode scanning, PDF generation and email automation, reducing manual processing for clients by 40%.",
+      "Migrated the frontend to Next.js, TypeScript and Zustand, cutting bundle size 28% and removing a class of state-sync bugs.",
+      "Architected multi-tenant data isolation and RBAC serving 50+ SMB customers.",
+      "Delivered invoicing workflows with barcode scanning, PDF generation and email automation, cutting manual processing about 40%.",
     ],
   },
   {
-    title: "Senior Frontend Developer",
+    title: "Frontend Developer",
     company: "Routelane",
-    location: "Remote — Missouri, USA",
-    date: "Mar 2021 — Jun 2022",
+    location: "Remote (Missouri, USA)",
+    date: "Mar 2021 - Jun 2022",
     points: [
-      "Built real-time driver and load tracking with Firebase and the Google Maps API, enabling live operational visibility for dispatchers.",
-      "Developed mobile-first React dashboards and integrated TypeScript REST API endpoints, improving dispatch efficiency by 20–25%.",
+      "Built real-time driver and load tracking with Firebase and the Google Maps API, giving dispatchers live operational visibility.",
+      "Developed mobile-first, responsive React and Redux dashboards for dispatcher and driver workflows against REST APIs.",
     ],
   },
   {
     title: "Freelance Web Developer",
     company: "Upwork",
     location: "Remote",
-    date: "Jun 2019 — Feb 2021",
+    date: "Jun 2019 - Feb 2021",
     points: [
-      "Shipped 15+ responsive, SEO-optimized websites and web applications for startups and SMBs, managing scoping, client communication and delivery independently.",
+      "Delivered 15+ websites and web apps for startups and SMBs, including frontend work for the PenTutor tutoring platform.",
     ],
   },
 ];
@@ -153,24 +184,14 @@ export const education = [
   {
     school: "The University of Lahore",
     qualification: "BSc Computer Science",
-    date: "Oct 2022 — Jun 2026",
-  },
-  {
-    school: "British Council",
-    qualification: "A Levels — Mathematics, Computer Science, Physics",
-    date: "Aug 2018 — Aug 2021",
-  },
-  {
-    school: "Laurels Public School",
-    qualification: "O Levels — Mathematics, Physics, Chemistry, Computer Science",
-    date: "Mar 2016 — Aug 2018",
+    date: "Oct 2022 - Jun 2026",
   },
 ];
 
 export const certifications = [
-  { name: "Google / Coursera — AI Fundamentals, AI for App Building", date: "Mar 2026" },
-  { name: "HackerRank — JavaScript Specialist, Problem Solving (Intermediate)", date: "Jul 2023" },
-  { name: "LinkedIn Learning — React: Software Architecture", date: "Sep 2022" },
+  { name: "Google: AI Fundamentals, AI for App Building", date: "2026" },
+  { name: "HackerRank: JavaScript Specialist, Problem Solving (Intermediate)", date: "2023" },
+  { name: "LinkedIn Learning: React Software Architecture", date: "2022" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -178,99 +199,90 @@ export const certifications = [
 /*                                                                     */
 /*  `live` and `repo` are optional. A card renders only the buttons    */
 /*  it has real URLs for, so nothing ever links to a dead page.        */
+/*  `liveLabel` overrides the "Open live" button text.                 */
 /* ------------------------------------------------------------------ */
 
 export const projects = [
-  /* ---------------- Products ---------------- */
+  /* ---------------- Featured projects (the two on the CV) ---------------- */
   {
-    name: "WebflowX",
-    tagline: "Multi-tenant AI productivity platform",
-    category: "Products",
+    name: "Sentinel",
+    tagline: "Biometric parking access control",
+    category: "Featured projects",
     year: "2026",
     description:
-      "Collaborative workspaces with real-time team chat, video calling and task management. Built from scratch on Convex live queries and WebRTC, with organization-level RBAC and multi-tenant data isolation. OpenAI, Gemini and Google Speech power meeting summaries and documentation assistance.",
+      "License-plate OCR opens a parking session, and drivers authorize their exit with device-bound WebAuthn passkeys, so fingerprint and face checks stay on the phone. Sessions are a state machine with duplicate-entry rejection, capacity enforcement and an audit log of every gate action and admin override. Django API on Oracle Cloud, Next.js on Vercel. A demo login is shown on the sign-in page.",
+    stack: ["Django REST Framework", "Next.js", "TypeScript", "WebAuthn", "Tesseract OCR"],
+    live: "https://sentinel-biometric-parking-system.vercel.app",
+    repo: "https://github.com/LaeeqtheDev/Sentinel-Biometric-Parking-System",
+    featured: true,
+  },
+  {
+    name: "StillWater",
+    tagline: "Android mental-health companion",
+    category: "Featured projects",
+    year: "2026",
+    description:
+      "Mood tracking, journaling, guided breathing, a biometric app lock and an AI companion that references the user's own entries. Safety is enforced server-side in layers: all inference routes through the Express backend, risk is classified before generation, crisis escalation takes the conversation away from the model, and every route is rate limited.",
+    stack: ["React Native", "Expo", "Node.js", "Express.js", "Firebase", "Groq"],
+    live: "https://github.com/LaeeqtheDev/StillWater-Mental-Health-Fitness-App/releases",
+    liveLabel: "Android release",
+    repo: "https://github.com/LaeeqtheDev/StillWater-Mental-Health-Fitness-App",
+    featured: true,
+  },
+
+  /* ---------------- Employer & client work ---------------- */
+  {
+    name: "WebflowX",
+    tagline: "Team workspace SaaS",
+    category: "Employer & client work",
+    year: "2026",
+    description:
+      "Chat, tasks, documents, meetings and AI summaries in one multi-tenant workspace. Built from an existing design on Convex live queries and WebRTC, with organization-level RBAC, data isolation and plan-based usage limits. OpenAI, Gemini and Google Speech generate the meeting summaries. Contract role; the product is now part of North Foundry.",
     stack: ["Next.js", "TypeScript", "Convex", "WebRTC", "OpenAI"],
     live: "https://webflow-x.vercel.app",
     repo: "https://github.com/northfoundrystudio/WebflowX",
     featured: true,
   },
   {
-    name: "OS North Foundry",
-    tagline: "Internal studio operating system",
-    category: "Products",
-    year: "2026",
-    description:
-      "The internal platform North Foundry runs on — client pipeline, delivery tracking and automation workflows in one place. Private codebase, live in daily use.",
-    stack: ["Next.js", "TypeScript", "Automation"],
-    live: "https://os.northfoundry.co",
-    repo: null,
-    repoNote: "Private",
-    featured: true,
-  },
-  {
     name: "InvoiceStock",
     tagline: "Invoicing and inventory SaaS",
-    category: "Products",
+    category: "Employer & client work",
     year: "2024",
     description:
-      "Invoicing and inventory platform for small businesses with barcode scanning, multi-currency invoicing, PDF generation, email automation and role-based dashboards. Multi-tenant data isolation supporting 50+ SMB customers.",
-    stack: ["Next.js", "TypeScript", "Stripe", "Zustand", "RBAC"],
+      "Invoicing and inventory platform for small businesses with barcode scanning, PDF generation, email automation and role-based dashboards. Multi-tenant data isolation and RBAC serving 50+ SMB customers.",
+    stack: ["Next.js", "TypeScript", "Zustand", "RBAC"],
     live: "https://invoicestock-fin-bice.vercel.app",
     repo: "https://github.com/northfoundrystudio/invoicestock",
     featured: true,
   },
   {
-    name: "Converso",
-    tagline: "AI-powered learning platform",
-    category: "Products",
+    name: "PeakHawks",
+    tagline: "Marketing platform for an Amazon growth agency",
+    category: "Employer & client work",
     year: "2026",
     description:
-      "Students build their own AI voice tutors and learn through spoken conversation. Real-time TTS/STT via the Vapi SDK, subscription billing and RBAC through Clerk and Stripe, with Sentry error monitoring.",
-    stack: ["Next.js", "Supabase", "Clerk", "Vapi AI", "Stripe"],
-    live: "https://converso-ai-saas-liart.vercel.app",
-    repo: "https://github.com/LaeeqtheDev/Converso",
-    featured: true,
+      "Case-study and blog systems, a booking flow and rate-limited API routes on Next.js 15, Sanity CMS and GoHighLevel, so the client team publishes without touching code. Delivered through North Foundry.",
+    stack: ["Next.js", "Sanity CMS", "GoHighLevel", "GSAP"],
+    live: "https://growth.peakhawks.com",
+    repo: null,
+    repoNote: "Private",
   },
-  {
-    name: "Resumind",
-    tagline: "AI resume analysis tool",
-    category: "Products",
-    year: "2026",
-    description:
-      "Scores a resume against a job description for ATS compatibility and missing keywords. Built on React Router 7 and Puter.js with PDF parsing and strict-JSON model output.",
-    stack: ["React Router 7", "Puter.js", "TypeScript", "AI"],
-    live: "https://ai-resume-anlayzer.vercel.app",
-    repo: "https://github.com/LaeeqtheDev/Resumind",
-  },
-  {
-    name: "Subme",
-    tagline: "Tiered creator subscription platform",
-    category: "Products",
-    year: "2025",
-    description:
-      "Three-tier membership system with Stripe subscriptions, RBAC content gating and live earnings tracking. Serving 500+ paying users.",
-    stack: ["Next.js", "Stripe", "Clerk", "Sanity"],
-    live: "https://subme-bay.vercel.app",
-    repo: "https://github.com/LaeeqtheDev/Subme",
-  },
-
-  /* ---------------- Client & studio work ---------------- */
   {
     name: "North Foundry",
     tagline: "Studio site",
-    category: "Client & studio work",
+    category: "Employer & client work",
     year: "2026",
     description:
-      "Marketing site for the studio — work, capabilities, a doctors vertical and a journal. Built for fast first paint and clean case-study storytelling.",
+      "Marketing site for the studio: work, capabilities, a doctors vertical and a journal. Built for fast first paint and clean case-study storytelling.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
-    live: "https://northfoundry.vercel.app",
+    live: "https://northfoundry.co",
     repo: null,
     repoNote: "Private",
   },
   {
     name: "Locopro",
     tagline: "Real estate listing platform",
-    category: "Client & studio work",
+    category: "Employer & client work",
     year: "2025",
     description:
       "Property listings with filters, user authentication, an admin management panel and an AI chatbot assistant. Firebase-backed and built to scale.",
@@ -281,7 +293,7 @@ export const projects = [
   {
     name: "Healthcare",
     tagline: "Medical appointment platform",
-    category: "Client & studio work",
+    category: "Employer & client work",
     year: "2025",
     description:
       "Appointment scheduling and patient record management with admin dashboards, SMS notifications and schema-validated forms.",
@@ -292,32 +304,44 @@ export const projects = [
   {
     name: "Routelane",
     tagline: "Logistics dispatch platform",
-    category: "Client & studio work",
+    category: "Employer & client work",
     year: "2022",
     description:
-      "Real-time driver and load tracking for dispatchers, built with Firebase and the Google Maps API. Mobile-first dashboards that improved dispatch efficiency by 20–25%.",
-    stack: ["React", "Firebase", "Google Maps API"],
+      "Real-time driver and load tracking for dispatchers, built with Firebase and the Google Maps API, plus mobile-first React and Redux dashboards for dispatcher and driver workflows.",
+    stack: ["React", "Redux", "Firebase", "Google Maps API"],
     live: "https://routelanellc.vercel.app",
     repo: null,
     repoNote: "Private",
   },
 
-  /* ---------------- Experiments ---------------- */
+  /* ---------------- Products & experiments ---------------- */
   {
-    name: "Sentinel",
-    tagline: "Biometric parking system",
-    category: "Experiments",
+    name: "OS North Foundry",
+    tagline: "Internal studio operating system",
+    category: "Products & experiments",
+    year: "2026",
+    description:
+      "The internal platform North Foundry runs on: client pipeline, delivery tracking and automation workflows in one place. Private codebase, live in daily use.",
+    stack: ["Next.js", "TypeScript", "Automation"],
+    live: "https://os.northfoundry.co",
+    repo: null,
+    repoNote: "Private",
+  },
+  {
+    name: "Converso",
+    tagline: "AI voice tutoring platform",
+    category: "Products & experiments",
     year: "2025",
     description:
-      "Smart parking surveillance combining license-plate recognition with biometric authentication for entry control.",
-    stack: ["TypeScript", "Computer Vision"],
-    live: "https://sentinel-biometric-parking-system.vercel.app",
-    repo: "https://github.com/northfoundrystudio/Sentinel-Biometric-Parking-System",
+      "Students configure a voice tutor and learn by talking to it. Saved, searchable sessions, Clerk identity enforced through Supabase Row Level Security, Zod-validated model output, plan-gated limits and Sentry monitoring.",
+    stack: ["Next.js", "Supabase", "Clerk", "Vapi AI", "Stripe"],
+    live: "https://converso-ai-saas-liart.vercel.app",
+    repo: "https://github.com/LaeeqtheDev/Converso",
   },
   {
     name: "Axen",
     tagline: "GSAP scroll storytelling",
-    category: "Experiments",
+    category: "Products & experiments",
     year: "2025",
     description:
       "Scroll-driven 3D storytelling with layered depth effects and continuous motion transitions. An exercise in making narrative pacing hold at 60fps.",
@@ -328,17 +352,21 @@ export const projects = [
   {
     name: "This portfolio",
     tagline: "Interactive WebGL island",
-    category: "Experiments",
+    category: "Products & experiments",
     year: "2025",
     description:
       "A drag-to-rotate 3D island built with React Three Fiber. Models are Draco-compressed and routes are code-split so the scene loads fast on a mid-range phone.",
     stack: ["React", "Three.js", "R3F", "Vite"],
     live: "https://laeeqthedevportfolio.vercel.app",
-    repo: "https://github.com/LaeeqtheDev/3d-Portfolio",
+    repo: "https://github.com/LaeeqtheDev/3d-Interactive-Portfolio",
   },
 ];
 
-export const projectCategories = ["Products", "Client & studio work", "Experiments"];
+export const projectCategories = [
+  "Featured projects",
+  "Employer & client work",
+  "Products & experiments",
+];
 
 /* ------------------------------------------------------------------ */
 /*  LINKS                                                              */
@@ -350,5 +378,5 @@ export const quickLinks = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/syed-laeeq-ahmed/" },
   { label: "Upwork", href: "https://www.upwork.com/freelancers/~0121dd549b3f2830da" },
   { label: "All socials", href: "https://linktr.ee/syedlaeeqahmed" },
-  { label: "North Foundry", href: "https://northfoundry.vercel.app" },
+  { label: "North Foundry", href: "https://northfoundry.co" },
 ];

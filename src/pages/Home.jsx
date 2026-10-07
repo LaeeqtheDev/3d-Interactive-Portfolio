@@ -4,6 +4,7 @@ import { Preload } from "@react-three/drei";
 
 import HomeInfo from "../components/HomeInfo";
 import Loader from "../components/Loader";
+import usePageMeta from "../hooks/usePageMeta";
 import StageProgress from "../components/StageProgress";
 import { Bird } from "../models/Bird";
 import { Island } from "../models/Island";
@@ -31,6 +32,13 @@ const Home = () => {
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
   const isMobile = useIsMobile();
+
+  usePageMeta({
+    title: "Syed Laeeq Ahmed | Full-Stack Engineer (React, Next.js)",
+    description:
+      "Full-stack engineer with 5+ years building multi-tenant SaaS in React, Next.js, TypeScript and Node.js. Open to remote or relocation. See the work.",
+    path: "/",
+  });
 
   const { islandScale, islandPosition, biplaneScale, biplanePosition } = useMemo(
     () => ({

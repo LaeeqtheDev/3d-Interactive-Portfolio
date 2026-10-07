@@ -51,6 +51,8 @@ const Shell = () => {
   return (
     <>
       <ScrollToTop />
+      {/* Inner pages open under the same sky as the island. */}
+      {!isHome && <div className="sky-band" aria-hidden="true" />}
       <Navbar />
       <Suspense fallback={<PageFallback />}>
         <Routes>
@@ -75,7 +77,7 @@ const App = () => {
   }, []);
 
   return (
-    <main className="bg-paper min-h-screen">
+    <main className="relative bg-paper min-h-screen">
       <Router>
         <Shell />
       </Router>

@@ -3,6 +3,7 @@ import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import CTA from "../components/CTA";
 import ScrollProgress from "../components/ScrollProgress";
 import TechIcon from "../components/TechIcon";
+import usePageMeta from "../hooks/usePageMeta";
 import {
   ArrowUpRight,
   BeakerIcon,
@@ -23,73 +24,116 @@ import {
 } from "../lib/motion";
 
 const CATEGORY_ICONS = {
-  Products: LayersIcon,
-  "Client & studio work": BriefcaseIcon,
-  Experiments: BeakerIcon,
+  "Featured projects": LayersIcon,
+  "Employer & client work": BriefcaseIcon,
+  "Products & experiments": BeakerIcon,
 };
 
-const ProjectEntry = ({ project, index }) => {
-  const { name, tagline, description, stack, live, repo, repoNote, year } = project;
+const FEATURED = "Featured projects";
+
+const Status = ({ live, repo }) =>
+  live ? (
+    <span className="flex items-center gap-2">
+      <span className="status-dot status-live" />
+      <span className="meta !text-roof">Live</span>
+    </span>
+  ) : (
+    <span className="flex items-center gap-2">
+      <span className="status-dot status-private" />
+      <span className="meta">{repo ? "Source" : "Private"}</span>
+    </span>
+  );
+
+const Stack = ({ stack }) => (
+  <ul className="flex flex-wrap gap-2">
+    {stack.map((tech) => (
+      <li key={tech} className="stack-chip">
+        <TechIcon name={tech} className="w-3 h-3" />
+        {tech}
+      </li>
+    ))}
+  </ul>
+);
+
+const Links = ({ live, liveLabel, repo, repoNote }) => (
+  <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+    {live && (
+      <a href={live} target="_blank" rel="noopener noreferrer" className="link-out">
+        {liveLabel || "Open live"}
+        <ArrowUpRight />
+      </a>
+    )}
+    {repo && (
+      <a href={repo} target="_blank" rel="noopener noreferrer" className="link-out">
+        <CodeIcon />
+        View code
+      </a>
+    )}
+    {!repo && repoNote && (
+      <span className="inline-flex items-center gap-2 text-sm text-haze">
+        <LockIcon />
+        {repoNote} repository
+      </span>
+    )}
+  </div>
+);
+
+/** The two CV projects: a full card each, side by side on desktop. */
+const FeatureCard = ({ project }) => {
+  const { name, tagline, description, stack, year } = project;
 
   return (
-    <article className="log-entry" data-entry>
-      <div className="flex items-center gap-3">
-        <span className="meta log-index !text-haze">
-          {String(index).padStart(2, "0")}
-        </span>
+    <article className="feature-card" data-entry>
+      <div className="flex items-center justify-between gap-3">
         <span className="meta">{year}</span>
-        <span className="flex-1 h-px bg-rule" />
-        {live ? (
-          <span className="flex items-center gap-2">
-            <span className="status-dot status-live" />
-            <span className="meta !text-signal">Live</span>
-          </span>
-        ) : (
-          <span className="flex items-center gap-2">
-            <span className="status-dot status-private" />
-            <span className="meta">{repo ? "Source" : "Private"}</span>
-          </span>
-        )}
+        <Status {...project} />
       </div>
 
-      <h3 className="mt-4 font-display font-bold text-2xl tracking-tight">
+      <h3 className="mt-5 font-display font-bold text-[2rem] leading-none tracking-[-0.03em]">
         {name}
       </h3>
-      <p className="mt-1 text-horizon font-display text-sm font-medium">
-        {tagline}
-      </p>
-      <p className="mt-3 text-haze text-sm leading-relaxed max-w-xl">
-        {description}
-      </p>
+      <p className="mt-2 text-horizon font-display font-medium">{tagline}</p>
+      <p className="mt-3 text-muted text-sm leading-relaxed">{description}</p>
 
-      <ul className="mt-4 flex flex-wrap gap-2">
-        {stack.map((tech) => (
-          <li key={tech} className="stack-chip">
-            <TechIcon name={tech} className="w-3 h-3" />
-            {tech}
-          </li>
-        ))}
-      </ul>
+      {/* Stack and links are pinned to the bottom as one block, so they
+          line up across cards whatever the description length. */}
+      <div className="mt-auto pt-6">
+        <div className="feature-stack">
+          <Stack stack={stack} />
+        </div>
+        <div className="mt-5 pt-4 border-t border-sand-edge">
+          <Links {...project} />
+        </div>
+      </div>
+    </article>
+  );
+};
 
-      <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
-        {live && (
-          <a href={live} target="_blank" rel="noopener noreferrer" className="link-out">
-            Open live
-            <ArrowUpRight />
-          </a>
-        )}
-        {repo && (
-          <a href={repo} target="_blank" rel="noopener noreferrer" className="link-out">
-            <CodeIcon />
-            View code
-          </a>
-        )}
-        {!repo && repoNote && (
-          <span className="inline-flex items-center gap-2 text-sm text-haze">
-            <LockIcon />
-            {repoNote} repository
-          </span>
-        )}
+/** Every other project: year and status in the margin, the record beside it. */
+const LogRow = ({ project }) => {
+  const { name, tagline, description, stack, year } = project;
+
+  return (
+    <article className="log-entry log-row" data-entry>
+      <div className="flex md:flex-col items-center md:items-start gap-x-4 gap-y-2 md:pt-1.5">
+        <span className="meta">{year}</span>
+        <Status {...project} />
+      </div>
+
+      <div className="mt-3 md:mt-0">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <h3 className="log-name font-display font-bold text-2xl tracking-[-0.02em]">
+            {name}
+          </h3>
+          <p className="text-horizon font-display text-sm font-medium">{tagline}</p>
+        </div>
+        <p className="mt-2.5 text-muted text-sm leading-relaxed max-w-2xl">
+          {description}
+        </p>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+          <Stack stack={stack} />
+          <Links {...project} />
+        </div>
       </div>
     </article>
   );
@@ -99,6 +143,13 @@ const Projects = () => {
   const root = useRef(null);
   const headline = useRef(null);
   const [filter, setFilter] = useState("All");
+
+  usePageMeta({
+    title: "Projects | Syed Laeeq Ahmed, Full-Stack Engineer",
+    description:
+      "13 projects with live links and source: Sentinel passkey parking access, StillWater mental-health app, WebflowX, InvoiceStock, PeakHawks and more.",
+    path: "/projects",
+  });
 
   const counts = useMemo(() => {
     const map = { All: projects.length };
@@ -182,8 +233,6 @@ const Projects = () => {
       ? projectCategories
       : projectCategories.filter((c) => c === filter);
 
-  let counter = 0;
-
   return (
     <section className="max-container" ref={root}>
       <ScrollProgress />
@@ -197,11 +246,11 @@ const Projects = () => {
         </span>
       </h1>
 
-      <p className="mt-6 text-haze leading-relaxed max-w-2xl" data-lede>
-        {projects.length} projects — production SaaS platforms, client builds and
-        a few experiments. {liveCount} are deployed and open right now; the rest
-        link to source. Anything marked private is client or studio code I can
-        walk you through instead.
+      <p className="mt-6 text-muted leading-relaxed max-w-2xl" data-lede>
+        {projects.length} projects: the two on my CV first, then employer and
+        client work, then products and experiments. {liveCount} are deployed and
+        open right now; the rest link to source. Anything marked private is
+        client or studio code I can walk you through instead.
       </p>
 
       {/* ----------------------------- Filter ----------------------------- */}
@@ -239,23 +288,24 @@ const Projects = () => {
                 <Icon />
               </span>
               <h2 className="subhead-text">{category}</h2>
-              <span className="meta ml-auto">
+              <span className="meta ml-auto whitespace-nowrap">
                 {items.length} {items.length === 1 ? "entry" : "entries"}
               </span>
             </div>
 
-            <div className="mt-6">
-              {items.map((project) => {
-                counter += 1;
-                return (
-                  <ProjectEntry
-                    key={project.name}
-                    project={project}
-                    index={counter}
-                  />
-                );
-              })}
-            </div>
+            {category === FEATURED ? (
+              <div className="mt-6 grid md:grid-cols-2 gap-5">
+                {items.map((project) => (
+                  <FeatureCard key={project.name} project={project} />
+                ))}
+              </div>
+            ) : (
+              <div className="mt-2">
+                {items.map((project) => (
+                  <LogRow key={project.name} project={project} />
+                ))}
+              </div>
+            )}
           </div>
         );
       })}
