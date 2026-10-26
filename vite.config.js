@@ -4,6 +4,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   assetsInclude: ["**/*.glb"],
+  preview: {
+    host: true,
+    allowedHosts: [".onrender.com"],
+  },
   build: {
     target: "es2020",
     cssCodeSplit: true,
